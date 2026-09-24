@@ -1,9 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using DemoMVC.Data;
+using Microsoft.Extensions.Options;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDbContext<ApplicationDbContext>(Options => Options.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnection")));
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

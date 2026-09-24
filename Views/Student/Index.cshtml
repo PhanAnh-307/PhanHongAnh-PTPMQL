@@ -32,3 +32,54 @@
         <h1>@TempData["Data"]</h1>
     }
 </div>
+
+@model IEnumerable<DemoMVC.Models.Student>
+
+@{
+    ViewData["Title"] = "Danh sách sinh viên";
+}
+
+@{
+    int stt = 1;
+}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Danh sách sinh viên</h2>
+    <a asp-action="Create" class="btn btn-success">Thêm sinh viên</a>
+</div>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Stt</th>
+            <th>Họ Tên</th>
+            <th>Ngày sinh</th>
+            <th>Địa chỉ</th>
+            <th>Chuyên ngành</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var std in Model)
+            {
+                <tr>
+                    <td>@(stt++)</td>
+                    <td>@std.FullName</td>
+                    <td>@std.Birthday</td>
+                    <td>@std.Address</td>
+                    <td>@std.Major</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@std.StudentId" class="btn btn-sm btn-warning">Sửa</a>
+                        <a asp-action="Delete" asp-route-id="@std.StudentId" class="btn btn-sm btn-danger">Xóa</a>
+                    </td>
+                </tr>
+            }
+        }else{
+            <tr>
+                <td colspan="6" class="text-center text-muted">Chưa có sinh viên nào</td>
+            </tr>
+        }
+            
+    </tbody>
+</table>

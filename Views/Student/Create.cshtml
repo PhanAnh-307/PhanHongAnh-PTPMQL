@@ -1,0 +1,43 @@
+@model DemoMVC.Models.Student
+
+@{
+    ViewData["Title"] = "Thêm Sinh Viên mới";
+}
+<h2>Thêm sinh viên mới</h2>
+<hr>
+<div class = "row">
+    <div class = "col-md-6">
+        <form asp-action="Create" method="post">
+            <div class = "mb-3">
+                <label asp-for="FullName" class= "form-label">Họ Tên</label>
+                <input asp-for="FullName" class ="form-control">
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class = "mb-3">
+                <label asp-for="Address" class= "form-label">Địa chỉ</label>
+                <input asp-for="Address" class ="form-control">
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class = "mb-3">
+                <label asp-for="Birthday" class= "form-label">Ngày sinh</label>
+                <input asp-for="Birthday" class ="form-control" type="date">
+                <span asp-validation-for="Birthday" class="text-danger"></span>
+            </div>
+            <div class = "mb-3">
+                <label asp-for="Major" class= "form-label">Chuyên ngành</label>
+                <select asp-for="Major" class="form-select">
+                    <option value="">--Chọn chuyên ngành--</option>
+                    <option value="Công nghệ thông tin">Công nghệ thông tin</option>
+                    <option value="Quản trị kinh doanh">Quản trị kinh doanh</option>
+                    <option value="Du lịch">Du lịch</option>
+                    <option value="Khai thác mỏ">Khai thác mỏ</option>
+                    <option value="Thú y">Thú y</option>
+                </select>
+
+                <span asp-validation-for="Major" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </form> 
+
+    </div>
+</div>

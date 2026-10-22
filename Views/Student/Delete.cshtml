@@ -8,7 +8,10 @@
 <h3>Bạn có chắc chắn muốn xóa sinh viên này không?</h3>
 <div>
     <hr />
-    <dl class="row">
+        <dl class="row">
+        <dt class="col-sm-2">Mã sinh viên</dt>
+        <dd class="col-sm-10">@Model.StudentId</dd>
+
         <dt class="col-sm-2">Họ và tên</dt>
         <dd class="col-sm-10">@Model.FullName</dd>
         
@@ -16,11 +19,12 @@
         <dd class="col-sm-10">@Model.Address</dd>
         
         <dt class="col-sm-2">Ngày sinh</dt>
-        <dd class="col-sm-10">@Model.Birthday</dd>
+        <dd class="col-sm-10">@Model.Birthday.ToString("dd/MM/yyyy")</dd>
 
-        <dt class="col-sm-2">Chuyên ngành</dt>
-        <dd class="col-sm-10">@Model.Major</dd>
+        <dt class="col-sm-2">Khoa/Ngành</dt>
+        <dd class="col-sm-10">@(Model.Faculty != null ? Model.Faculty.FacultyName : Model.FacultyId)</dd>
     </dl>
+
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="StudentId" />

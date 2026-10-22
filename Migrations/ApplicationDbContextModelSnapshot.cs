@@ -17,11 +17,67 @@ namespace DemoMVC.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.12");
 
+            modelBuilder.Entity("DemoMVC.Models.Faculty", b =>
+                {
+                    b.Property<string>("FacultyId")
+                        .HasMaxLength(10)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FacultyName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("FacultyId");
+
+                    b.ToTable("Faculties");
+
+                    b.HasData(
+                        new
+                        {
+                            FacultyId = "05",
+                            FacultyName = "Công nghệ thông tin"
+                        },
+                        new
+                        {
+                            FacultyId = "01",
+                            FacultyName = "Dầu khí"
+                        },
+                        new
+                        {
+                            FacultyId = "02",
+                            FacultyName = "Mỏ"
+                        },
+                        new
+                        {
+                            FacultyId = "03",
+                            FacultyName = "Địa chất & Khoa học Trái đất"
+                        },
+                        new
+                        {
+                            FacultyId = "04",
+                            FacultyName = "Kinh tế & Quản trị kinh doanh"
+                        },
+                        new
+                        {
+                            FacultyId = "06",
+                            FacultyName = "Trắc địa - Bản đồ và Quản lý đất đai"
+                        },
+                        new
+                        {
+                            FacultyId = "07",
+                            FacultyName = "Cơ - Điện"
+                        },
+                        new
+                        {
+                            FacultyId = "08",
+                            FacultyName = "Môi trường"
+                        });
+                });
+
             modelBuilder.Entity("DemoMVC.Models.Student", b =>
                 {
-                    b.Property<int>("StudentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("StudentId")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Address")
                         .HasColumnType("TEXT");
@@ -29,17 +85,43 @@ namespace DemoMVC.Migrations
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("EnrollmentYear")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("FacultyId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Major")
+                    b.Property<string>("TrainingType")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("StudentId");
 
+                    b.HasIndex("FacultyId");
+
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("DemoMVC.Models.Student", b =>
+                {
+                    b.HasOne("DemoMVC.Models.Faculty", "Faculty")
+                        .WithMany("Students")
+                        .HasForeignKey("FacultyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Faculty");
+                });
+
+            modelBuilder.Entity("DemoMVC.Models.Faculty", b =>
+                {
+                    b.Navigation("Students");
                 });
 #pragma warning restore 612, 618
         }

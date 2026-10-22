@@ -29,9 +29,9 @@
                 <span asp-validation-for="Birthday" class="text-danger"></span>
             </div>
             <div class="form-group mb-3">
-                <label asp-for="Major" class="control-label">Chuyên ngành</label>
-                <input asp-for="Major" class="form-control" />
-                <span asp-validation-for="Major" class="text-danger"></span>
+                <label asp-for="FacultyId" class="control-label">Khoa / Ngành</label>
+                <select asp-for="FacultyId" class="form-select" asp-items="ViewBag.FacultyList"></select>
+                <span asp-validation-for="FacultyId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Lưu" class="btn btn-primary" />

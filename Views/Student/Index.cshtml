@@ -1,30 +1,4 @@
 <div>
-    <form action="" method="post">
-        <div>
-            <label>Nhập Họ tên</label>
-            <input type="text" name="FullName">
-        </div>
-        <div>
-            <label>Nhập Địa chỉ</label>
-            <input type="text" name="Address">
-        </div>
-        <div>
-            <label>Ngày sinh</label>
-            <input type="date" name="Birthday">
-        </div>
-        <div>
-            <label>Khoa</label>
-            <select name= "Major">
-                @foreach (var chuyenganh in ViewBag.Majors)
-                {
-                    <option value = "@chuyenganh">@chuyenganh</option>
-                }
-            </select>
-            <div class="mt-3">
-                <button type="submit">Submit</button>
-            </div>
-        </div>
-    </form>
 
     <hr/>
     @if (TempData["Data"] != null)
@@ -50,11 +24,13 @@
 <table class="table table-bordered table-striped table-hover">
     <thead>
         <tr>
-            <th>Stt</th>
-            <th>Họ Tên</th>
+            <th>STT</th>
+            <th>Mã SV</th>
+            <th>Họ và tên</th>
             <th>Ngày sinh</th>
             <th>Địa chỉ</th>
-            <th>Chuyên ngành</th>
+            <th>Hệ ĐT</th>
+            <th>Khoa/Ngành</th>
             <th>Thao tác</th>
         </tr>
     </thead>
@@ -65,10 +41,12 @@
             {
                 <tr>
                     <td>@(stt++)</td>
+                    <td><strong>@std.StudentId</strong></td>
                     <td>@std.FullName</td>
-                    <td>@std.Birthday</td>
+                    <td>@std.Birthday.ToString("dd/MM/yyyy")</td>
                     <td>@std.Address</td>
-                    <td>@std.Major</td>
+                    <td>@(std.TrainingType == "21" ? "Chính quy" : std.TrainingType)</td>
+                    <td>@(std.Faculty != null ? std.Faculty.FacultyName : std.FacultyId)</td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@std.StudentId" class="btn btn-sm btn-warning">Sửa</a>
                         <a asp-action="Delete" asp-route-id="@std.StudentId" class="btn btn-sm btn-danger">Xóa</a>
@@ -77,7 +55,7 @@
             }
         }else{
             <tr>
-                <td colspan="6" class="text-center text-muted">Chưa có sinh viên nào</td>
+                <td colspan="8" class="text-center text-muted">Chưa có sinh viên nào</td>
             </tr>
         }
             

@@ -23,18 +23,26 @@
                 <input asp-for="Birthday" class ="form-control" type="date">
                 <span asp-validation-for="Birthday" class="text-danger"></span>
             </div>
-            <div class = "mb-3">
-                <label asp-for="Major" class= "form-label">Chuyên ngành</label>
-                <select asp-for="Major" class="form-select">
-                    <option value="">--Chọn chuyên ngành--</option>
-                    <option value="Công nghệ thông tin">Công nghệ thông tin</option>
-                    <option value="Quản trị kinh doanh">Quản trị kinh doanh</option>
-                    <option value="Du lịch">Du lịch</option>
-                    <option value="Khai thác mỏ">Khai thác mỏ</option>
-                    <option value="Thú y">Thú y</option>
+            <div class="mb-3">
+                <label asp-for="EnrollmentYear" class="form-label">Năm nhập học</label>
+                <input asp-for="EnrollmentYear" class="form-control" type="number" value="2028" />
+                <span asp-validation-for="EnrollmentYear" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="TrainingType" class="form-label">Hệ đào tạo</label>
+                <select asp-for="TrainingType" class="form-select">
+                    <option value="21">21 - Đại học Chính quy (4.5 năm)</option>
+                    <option value="22">22 - Đại học Chất lượng cao</option>
+                    <option value="25">25 - Liên thông / Vừa làm vừa học</option>
                 </select>
-
-                <span asp-validation-for="Major" class="text-danger"></span>
+                <span asp-validation-for="TrainingType" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="FacultyId" class="form-label">Khoa / Ngành</label>
+                <select asp-for="FacultyId" class="form-select" asp-items="ViewBag.FacultyList">
+                    <option value="">-- Chọn Khoa/Ngành --</option>
+                </select>
+                <span asp-validation-for="FacultyId" class="text-danger"></span>
             </div>
             <button type="submit" class="btn btn-primary">Lưu</button>
         </form> 
